@@ -6,6 +6,7 @@ import { Flight } from '../../entities/flight';
   providedIn: 'root'
 })
 export class DummyFlightService {
+  flights: Flight[] = [];
 
   find(from: string, to: string): Observable<Flight[]> {
     const staticFlights = [

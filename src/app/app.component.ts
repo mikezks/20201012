@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent  {
   title = 'Hello World!';
+  toggleView = true;
 
   change(): void {
     this.title = 'My new title :)';

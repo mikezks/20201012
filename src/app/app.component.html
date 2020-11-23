@@ -20,7 +20,8 @@
           </div>
         </div> -->
 
-        <app-flight-search></app-flight-search>
+        <button class="btn btn-default" (click)="toggleView = !toggleView">Toggle View</button>
+        <app-flight-search *ngIf="toggleView"></app-flight-search>
 
       </div>
   </div>

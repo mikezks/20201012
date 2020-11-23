@@ -7,6 +7,7 @@ import { FlightService } from './flight.service';
 
 @Injectable()
 export class DefaultFlightService implements FlightService {
+  flights: Flight[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +23,8 @@ export class DefaultFlightService implements FlightService {
 
     return this.http.get<Flight[]>(url, { params, headers })
       .pipe(
-        tap(flights => console.log('data access by flight service', flights))
+        // tap(flights => console.log('data access by flight service', flights)),
+        tap(flights => this.flights = flights)
       );
   }
 }

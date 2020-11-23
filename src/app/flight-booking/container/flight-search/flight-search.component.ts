@@ -13,8 +13,11 @@ import { FlightService } from '../../services/flight.service';
 export class FlightSearchComponent implements OnInit {
   from = 'Hamburg';
   to = 'Graz';
-  flights: Flight[] = [];
   selectedFlight: Flight;
+
+  get flights(): Flight[] {
+    return this.flightService.flights;
+  }
 
   constructor(private flightService: FlightService) { }
 
@@ -24,9 +27,7 @@ export class FlightSearchComponent implements OnInit {
   search(): void {
     this.flightService
       .find(this.from, this.to)
-      .subscribe(
-        flights => this.flights = flights
-      );
+      .subscribe();
   }
 
   select(flight: Flight): void {
