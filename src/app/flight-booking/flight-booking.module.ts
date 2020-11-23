@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { FlightSearchComponent } from './container/flight-search/flight-search.component';
+import { FlightCardComponent } from './components/flight-card/flight-card.component';
 
 
 @NgModule({
   declarations: [
-    FlightSearchComponent
+    FlightSearchComponent,
+    FlightCardComponent
   ],
   imports: [
     CommonModule,
