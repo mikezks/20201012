@@ -1,29 +1,24 @@
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { from, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Flight } from '../entities/flight';
+import { DefaultFlightService } from './default-flight.service';
+import { DummyFlightService } from './dummy-flight.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
+  useFactory: (http: HttpClient) => {
+    if (environment.useFlightService === 'default') {
+      return new DefaultFlightService(http);
+    } else {
+      return new DummyFlightService();
+    }
+  },
+  deps: [HttpClient]
 })
-export class FlightService {
+export abstract class FlightService {
 
-  constructor(private http: HttpClient) { }
+  abstract find(from: string, to: string): Observable<Flight[]>;
 
-  find(from: string, to: string): Observable<Flight[]> {
-    const url = 'http://www.angular.at/api/flight';
-
-    const params = new HttpParams()
-      .set('from', from)
-      .set('to', to);
-
-    const headers = new HttpHeaders()
-      .set('Accept', 'application/json');
-
-    return this.http.get<Flight[]>(url, { params, headers })
-      .pipe(
-        tap(flights => console.log('data access by flight service', flights))
-      );
-  }
 }
