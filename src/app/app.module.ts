@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CoreModule } from './core/core.module';
 import { FlightBookingModule } from './flight-booking/flight-booking.module';
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
+import { PreloadAllModules, RouterModule } from '@angular/router';
 import { APP_ROUTES } from './app.routes';
 
 
@@ -14,9 +14,11 @@ import { APP_ROUTES } from './app.routes';
    imports: [
       BrowserModule,
       HttpClientModule,
-      RouterModule.forRoot(APP_ROUTES),
+      RouterModule.forRoot(APP_ROUTES, {
+        preloadingStrategy: PreloadAllModules
+      }),
       CoreModule,
-      FlightBookingModule
+      // FlightBookingModule <-- no direct import because of Lazy Loading
    ],
    declarations: [
       AppComponent
