@@ -34,12 +34,18 @@
                 name="to"
                 class="form-control"
                 required
-                minlength="3">
+                minlength="3"
+                [city]="['Graz','Hamburg']">
           </div>
           <div
             *ngIf="searchForm?.controls['to'].invalid"
             class="alert alert-danger">
             Input "From" is currently invalid.
+          </div>
+          <div
+            *ngIf="searchForm?.controls['to']?.hasError('city')"
+            class="alert alert-danger">
+            This city value is not allowed.
           </div>
 
           <div class="form-group">
