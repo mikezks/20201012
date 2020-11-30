@@ -9,19 +9,7 @@
 
       <div class="content">
 
-        <!-- <div class="card">
-          <div class="header">
-            <h1 class="title">{{ title }}</h1>
-          </div>
-          <div class="content">
-            <button
-              class="btn btn-default"
-              (click)="change()">change Title</button>
-          </div>
-        </div> -->
-
-        <button class="btn btn-default" (click)="toggleView = !toggleView">Toggle View</button>
-        <app-flight-search *ngIf="toggleView"></app-flight-search>
+        <router-outlet></router-outlet>
 
       </div>
   </div>
