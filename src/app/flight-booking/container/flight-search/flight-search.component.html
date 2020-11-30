@@ -6,20 +6,46 @@
 
   <div class="content">
 
-      <form>
+      <form #searchForm="ngForm">
           <div class="form-group">
               <label>From:</label>
-              <input [(ngModel)]="from" name="from" class="form-control">
+              <input
+                [(ngModel)]="from"
+                name="from"
+                class="form-control"
+                required
+                minlength="3">
           </div>
+          <div
+            *ngIf="searchForm?.controls['from']?.invalid"
+            class="alert alert-danger">
+            Input "From" is currently invalid.
+          </div>
+          <div
+            *ngIf="searchForm?.controls['from']?.hasError('required')"
+            class="alert alert-danger">
+            Input "From" is a mandatory field. Please enter a value.
+          </div>
+
           <div class="form-group">
               <label>To:</label>
-              <input [(ngModel)]="to" name="to" class="form-control">
+              <input
+                [(ngModel)]="to"
+                name="to"
+                class="form-control"
+                required
+                minlength="3">
+          </div>
+          <div
+            *ngIf="searchForm?.controls['to'].invalid"
+            class="alert alert-danger">
+            Input "From" is currently invalid.
           </div>
 
           <div class="form-group">
           <button
               class="btn btn-default"
-              [disabled]="!from || !to"
+              [disabled]="!searchForm?.valid"
               (click)="search()">Search</button>
           </div>
       </form>
