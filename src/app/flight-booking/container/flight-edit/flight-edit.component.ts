@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Observable, of, Subscription, timer } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { validateCity, validateCityWithParams } from '../../../shared/validation/city-validator';
 
 @Component({
@@ -8,17 +10,22 @@ import { validateCity, validateCityWithParams } from '../../../shared/validation
   templateUrl: './flight-edit.component.html',
   styleUrls: ['./flight-edit.component.css']
 })
-export class FlightEditComponent implements OnInit {
+export class FlightEditComponent implements OnInit, OnDestroy {
   id: number;
   showDetails: boolean;
 
   editForm: FormGroup;
+
+  timer$: Observable<number>;
+  subscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.rxjsDemo();
+
     this.route.paramMap
       .subscribe(params => {
         this.id = +params.get('id');
@@ -56,6 +63,16 @@ export class FlightEditComponent implements OnInit {
       .subscribe(console.log);
   }
 
+  rxjsDemo(): void {
+    this.timer$ = timer(0, 2000).pipe(
+      tap(console.log)
+    );
+
+    /* this.subscription =
+      this.timer$
+        .subscribe(num => console.log('my timer value', num)); */
+  }
+
   save(): void {
     console.log('value', this.editForm.value);
     console.log('valid', this.editForm.valid);
@@ -67,5 +84,9 @@ export class FlightEditComponent implements OnInit {
     this.editForm.patchValue({
       id: 9999
     });
+  }
+
+  ngOnDestroy(): void {
+    // this.subscription.unsubscribe();
   }
 }

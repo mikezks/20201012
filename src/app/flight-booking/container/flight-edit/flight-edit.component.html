@@ -7,6 +7,13 @@
   <div class="content">
     <p>ID: {{ id }}</p>
     <p>Show Details: {{ showDetails }}</p>
+    <ng-container *ngIf="{
+      timer: timer$ | async
+    } as state">
+      <p>Timer 1: {{ state.timer }}</p>
+      <p>Timer 2: {{ state.timer }}</p>
+    </ng-container>
+
 
     <form [formGroup]="editForm">
       <div class="form-group">

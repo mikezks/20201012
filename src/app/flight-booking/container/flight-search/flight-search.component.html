@@ -66,7 +66,9 @@
 
     <app-flight-card
       [item]="flight"
-      [(selected)]="basket[flight.id]">
+      [selected]="basket[flight.id]"
+      (selectedChange)="basket[flight.id] = $event"
+      (myflight)="processFlight($event)">
       <!-- Content of Flight Card -->
       <span myStyling class="child-title">My favorite flight!</span>
       Hello Child Component!

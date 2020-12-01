@@ -11,6 +11,8 @@ export class DefaultFlightService implements FlightService {
 
   constructor(private http: HttpClient) { }
 
+  // http://www.angular.at/api/flight?from=Hamburg&to=Graz
+
   find(from: string, to: string): Observable<Flight[]> {
     const url = 'http://www.angular.at/api/flight';
 

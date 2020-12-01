@@ -41,5 +41,25 @@
                 <p>Hide Basket</p>
             </a>
         </li>
+
+        <li routerLinkActive="active">
+          <a [routerLink]="[{ outlets: { widget: ['home'] }}]">
+              <i class="ti-shopping-cart"></i>
+              <p>Widget: Home</p>
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a [routerLink]="[{ outlets: { widget: ['flights'] }}]">
+              <i class="ti-shopping-cart"></i>
+              <p>Widget: Flights</p>
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a [routerLink]="[{ outlets: { widget: null }}]">
+              <i class="ti-shopping-cart"></i>
+              <p>Widget: Hide</p>
+          </a>
+        </li>
     </ul>
+    <router-outlet name="widget"></router-outlet>
 </div>

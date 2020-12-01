@@ -2,6 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { Flight } from '../../../entities/flight';
 import { FlightService } from '../../services/flight.service';
 
+
+export interface Passenger {
+  firstname: string;
+  lastname: string;
+  age: number;
+}
+
+export const passenger = {
+  firstname: 'Peter',
+  lastname: 'Huber',
+  age: 42
+};
+
 @Component({
   selector: 'app-flight-search',
   templateUrl: './flight-search.component.html',
@@ -37,5 +50,9 @@ export class FlightSearchComponent implements OnInit {
 
   select(flight: Flight): void {
     this.selectedFlight = flight;
+  }
+
+  processFlight(flight: Flight): void {
+    console.log(flight);
   }
 }
