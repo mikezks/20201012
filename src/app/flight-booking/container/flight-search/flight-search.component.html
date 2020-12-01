@@ -38,9 +38,9 @@
                 [city]="['Graz','Hamburg']">
           </div>
           <div
-            *ngIf="searchForm?.controls['to'].invalid"
+            *ngIf="searchForm?.controls['to']?.invalid"
             class="alert alert-danger">
-            Input "From" is currently invalid.
+            Input "To" is currently invalid.
           </div>
           <div
             *ngIf="searchForm?.controls['to']?.hasError('city')"
